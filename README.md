@@ -69,21 +69,13 @@ Antes de enviar el flujo de audio, se debe transmitir un byte de comando a la FP
 
 ---
 
-## Requisitos de Entorno y Preparacion
+## Librerias de Python Requeridas
 
-Para ejecutar la GUI y la cadena de validacion, prepara el entorno de Python:
-1.  **Crear el Entorno Virtual:**
-    ```bash
-    python -m venv .venv
-    ```
-2.  **Activar el Entorno Virtual:**
-    *   Windows (PowerShell): `.venv\Scripts\Activate.ps1`
-    *   Windows (CMD): `.venv\Scripts\activate.bat`
-    *   Linux/macOS: `source .venv/bin/activate`
-3.  **Instalar Librerias Requeridas:**
-    ```bash
-    pip install numpy scipy matplotlib pyserial
-    ```
+Para ejecutar la GUI y los scripts de validacion, es necesario instalar las siguientes librerias de Python:
+
+```bash
+pip install numpy scipy matplotlib pyserial
+```
 
 ---
 
