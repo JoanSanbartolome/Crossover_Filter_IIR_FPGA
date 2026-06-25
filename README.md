@@ -128,3 +128,11 @@ El modelo de referencia calcula la relacion senal a ruido de cuantizacion (**SQN
 *   **SQNR Canal HPF (Tweeter):** **`99.35 dB`**
 
 Esto garantiza una excelente relacion de fidelidad de audio libre de distorsiones armonicas apreciables, superando con creces las especificaciones fisicas de la mayoria de DACs comerciales de audio de consumo.
+
+---
+
+## Creditos y Agradecimientos
+
+Este proyecto esta basado y adaptado a partir del diseno de crossover estereo para FPGA de:
+*   [har-in-air/FPGA_STEREO_CROSSOVER](https://github.com/har-in-air/FPGA_STEREO_CROSSOVER)
+
