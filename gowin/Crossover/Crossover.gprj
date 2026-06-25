@@ -1,0 +1,16 @@
+<?xml version="1" encoding="UTF-8"?>
+<!DOCTYPE gowin-fpga-project>
+<Project>
+    <Template>FPGA</Template>
+    <Version>5</Version>
+    <Device name="GW1NR-9C" pn="GW1NR-LV9QN88PC6/I5">gw1nr9c-004</Device>
+    <FileList>
+        <File path="src/clk_gen.sv" type="file.verilog" enable="1"/>
+        <File path="src/crossover_engine.sv" type="file.verilog" enable="1"/>
+        <File path="src/crossover_pkg.sv" type="file.verilog" enable="1"/>
+        <File path="src/top_crossover.sv" type="file.verilog" enable="1"/>
+        <File path="src/uart_ctrl.sv" type="file.verilog" enable="1"/>
+        <File path="src/Crossover.cst" type="file.cst" enable="0"/>
+        <File path="src/tang_nano_9k.cst" type="file.cst" enable="1"/>
+    </FileList>
+</Project>

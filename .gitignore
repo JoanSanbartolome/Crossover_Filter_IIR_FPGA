@@ -1,0 +1,146 @@
+#=============================================================================
+# .gitignore - Filtro Crossover IIR - Tang Nano 9K
+# Proyecto  : Filtro Crossover IIR - Tang Nano 9K
+# Autor     : Joan
+#=============================================================================
+
+#-----------------------------------------------------------------------------
+# Documentacion (contiene recursos de clase y material sensible)
+#-----------------------------------------------------------------------------
+doc/
+
+#-----------------------------------------------------------------------------
+# Gowin EDA - Archivos de sintesis, PnR y temporales
+#-----------------------------------------------------------------------------
+gowin/**/impl/
+gowin/**/*.gprj.user
+gowin/**/temp/
+gowin/**/*.log
+gowin/**/*.rpt
+gowin/**/*.prj
+gowin/**/*.out
+gowin/**/*.sdf
+gowin/**/*.vo
+gowin/**/*.vg
+gowin/**/*.tim
+gowin/**/*.area
+gowin/**/*.power
+gowin/**/*.pin
+gowin/**/*.tr
+gowin/**/*.posp
+gowin/**/*.json.bak
+
+#-----------------------------------------------------------------------------
+# ModelSim - Archivos de simulacion y logs en la raiz/local
+#-----------------------------------------------------------------------------
+modelsim.ini
+vsim.wlf
+transcript
+wlft*
+sim/work/
+sim/**/*.wlf
+sim/**/*.vstf
+sim/**/*.ucdb
+sim/**/transcript
+sim/**/vsim.wlf
+sim/**/modelsim.ini
+sim/**/_info
+sim/**/_vmake
+sim/**/_lock
+sim/**/*.cr.mti
+sim/**/*.mpf
+
+#-----------------------------------------------------------------------------
+# Icarus Verilog / Verilator - Alternativas de simulacion
+#-----------------------------------------------------------------------------
+*.vvp
+*.vcd
+*.fst
+*.lxt
+*.lxt2
+sim/**/obj_dir/
+
+#-----------------------------------------------------------------------------
+# Waveform dumps
+#-----------------------------------------------------------------------------
+*.vcd
+*.fst
+*.ghw
+*.wlf
+
+#-----------------------------------------------------------------------------
+# Python - Cache, entornos virtuales y bytecode
+#-----------------------------------------------------------------------------
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+*.egg
+dist/
+build/
+.eggs/
+*.whl
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Entornos virtuales
+.venv/
+venv/
+ENV/
+env/
+
+# Jupyter Notebooks
+.ipynb_checkpoints/
+
+#-----------------------------------------------------------------------------
+# Datos generados - Estimulos, capturas y salidas
+#-----------------------------------------------------------------------------
+sim/data/*
+!sim/data/.gitkeep
+captures/*
+!captures/.gitkeep
+scripts/*.bin
+scripts/*.png
+
+#-----------------------------------------------------------------------------
+# IDE y editores
+#-----------------------------------------------------------------------------
+# VS Code / Antigravity
+.vscode/
+.gemini/
+
+# Obsidian
+.obsidian/
+
+# JetBrains
+.idea/
+
+# Vim/Neovim
+*.swp
+*.swo
+*~
+
+#-----------------------------------------------------------------------------
+# Sistema operativo
+#-----------------------------------------------------------------------------
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+*.lnk
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+
+#-----------------------------------------------------------------------------
+# Archivos temporales genericos
+#-----------------------------------------------------------------------------
+*.tmp
+*.temp
+*.bak
+*.orig
+*.log

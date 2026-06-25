@@ -1,0 +1,41 @@
+//=============================================================================
+// Archivo   : tang_nano_9k.cst
+// Proyecto  : Filtro Crossover IIR - Tang Nano 9K
+// Descripcion:
+//   Fichero de restricciones de pines (Physical Constraints) para Gowin EDA.
+//   Mapea los puertos del top_crossover.sv a los pines fisicos de la placa.
+//=============================================================================
+
+// Reloj de sistema (27 MHz de oscilador interno)
+IO_LOC "clk_sys" 52;
+IO_PORT "clk_sys" IO_TYPE=LVCMOS33 PULL_MODE=NONE;
+
+// Boton de reset fisico (KEY1 o KEY2, activo bajo)
+IO_LOC "rst_n" 3;
+IO_PORT "rst_n" IO_TYPE=LVCMOS18 PULL_MODE=UP;
+
+// Interfaz UART (Conexion al puente USB-UART CH552)
+IO_LOC "uart_txd" 17; // TX de FPGA (entrada de datos al CH552)
+IO_PORT "uart_txd" IO_TYPE=LVCMOS33 PULL_MODE=NONE;
+
+IO_LOC "uart_rxd" 18; // RX de FPGA (salida de datos del CH552)
+IO_PORT "uart_rxd" IO_TYPE=LVCMOS33 PULL_MODE=UP;
+
+// Trama de LEDs integrados (Banco 3, 1.8V, activos bajo)
+IO_LOC "o_leds_n[0]" 10;
+IO_PORT "o_leds_n[0]" IO_TYPE=LVCMOS18 PULL_MODE=UP;
+
+IO_LOC "o_leds_n[1]" 11;
+IO_PORT "o_leds_n[1]" IO_TYPE=LVCMOS18 PULL_MODE=UP;
+
+IO_LOC "o_leds_n[2]" 13;
+IO_PORT "o_leds_n[2]" IO_TYPE=LVCMOS18 PULL_MODE=UP;
+
+IO_LOC "o_leds_n[3]" 14;
+IO_PORT "o_leds_n[3]" IO_TYPE=LVCMOS18 PULL_MODE=UP;
+
+IO_LOC "o_leds_n[4]" 15;
+IO_PORT "o_leds_n[4]" IO_TYPE=LVCMOS18 PULL_MODE=UP;
+
+IO_LOC "o_leds_n[5]" 16;
+IO_PORT "o_leds_n[5]" IO_TYPE=LVCMOS18 PULL_MODE=UP;
