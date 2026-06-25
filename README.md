@@ -4,6 +4,76 @@ Este proyecto implementa un filtro Crossover digital IIR (Linkwitz-Riley de 4o o
 
 ---
 
+## Diagrama de Bloques del Sistema
+
+El siguiente diagrama de bloques muestra la arquitectura de hardware implementada en la FPGA, incluyendo el flujo de datos UART, el motor DSP del crossover, la FSM de control global y la FIFO de salida:
+
+```mermaid
+graph TD
+    %% Estilos de Nodos
+    classDef clk fill:#1F2A38,stroke:#4E88FF,stroke-width:1px,color:#F0F0F0;
+    classDef fsm fill:#4A2E3D,stroke:#FF6E6E,stroke-width:1px,color:#F0F0F0;
+    classDef dsp fill:#1A332B,stroke:#00FF66,stroke-width:1px,color:#F0F0F0;
+    classDef uart fill:#2C3E50,stroke:#3498DB,stroke-width:1px,color:#F0F0F0;
+    classDef memory fill:#4D3C2B,stroke:#E67E22,stroke-width:1px,color:#F0F0F0;
+
+    %% Puertos Externos
+    CLK["clk_sys (27 MHz)"] ::: clk
+    RST["rst_n (Reset KEY1)"] ::: clk
+    RXD["uart_rxd (Pin 18)"] ::: uart
+    TXD["uart_txd (Pin 17)"] ::: uart
+    LEDS["o_leds_n (LEDs 0-5)"] ::: clk
+
+    %% Submodulos
+    CLKGEN["clk_gen (Clock Generator)"] ::: clk
+    UARTCTRL["uart_ctrl (UART Transceiver)"] ::: uart
+    GFSM["FSM de Control Global"] ::: fsm
+    RXFRAME["Logica de Encuadre RX (Ventana Deslizante)"] ::: fsm
+    DSPENGINE["crossover_engine (Filtros IIR LR4)"] ::: dsp
+    OUTFIFO["FIFO de Salida (48-bit, 256 muestras)"] ::: memory
+
+    %% Conexiones de Reloj y Reset
+    CLK --> CLKGEN
+    CLK --> UARTCTRL
+    CLK --> GFSM
+    CLK --> RXFRAME
+    CLK --> DSPENGINE
+    CLK --> OUTFIFO
+    RST --> CLKGEN
+    RST --> UARTCTRL
+    RST --> GFSM
+    RST --> RXFRAME
+    RST --> DSPENGINE
+    RST --> OUTFIFO
+
+    %% Flujo UART RX
+    RXD --> UARTCTRL
+    UARTCTRL -- "oc_rx_cmd, oc_rx_valid" --> GFSM
+    UARTCTRL -- "oc_rx_cmd, oc_rx_valid" --> RXFRAME
+
+    %% FSM y Control
+    GFSM -- "streaming_mode_r" --> RXFRAME
+    GFSM -- "bypass_mode_r" --> OUTFIFO
+    GFSM -- "LED status" --> LEDS
+
+    %% Procesamiento DSP
+    RXFRAME -- "dsp_input_sample_s, dsp_input_valid_s" --> DSPENGINE
+    RXFRAME -- "dsp_input_sample_s (Bypass)" --> OUTFIFO
+    RXFRAME -- "rx_sync_error_r" --> LEDS
+
+    %% Multiplexacion y FIFO
+    DSPENGINE -- "woofer_sample_s, tweeter_sample_s, engine_output_valid_s" --> OUTFIFO
+    OUTFIFO -- "out_fifo_empty_s, out_fifo_full_s" --> LEDS
+
+    %% Flujo UART TX
+    OUTFIFO -- "woofer_tx_s, tweeter_tx_s" --> UARTCTRL
+    UARTCTRL -- "oc_tx_busy" --> OUTFIFO
+    OUTFIFO -- "uart_tx_trigger_s" --> UARTCTRL
+    UARTCTRL --> TXD
+```
+
+---
+
 ## Caracteristicas del Sistema
 
 *   **Procesamiento de Audio de Alto Rendimiento:**
