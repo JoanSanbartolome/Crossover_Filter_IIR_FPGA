@@ -10,27 +10,20 @@ El siguiente diagrama de bloques muestra la arquitectura de hardware implementad
 
 ```mermaid
 graph TD
-    %% Estilos de Nodos
-    classDef clk fill:#1F2A38,stroke:#4E88FF,stroke-width:1px,color:#F0F0F0;
-    classDef fsm fill:#4A2E3D,stroke:#FF6E6E,stroke-width:1px,color:#F0F0F0;
-    classDef dsp fill:#1A332B,stroke:#00FF66,stroke-width:1px,color:#F0F0F0;
-    classDef uart fill:#2C3E50,stroke:#3498DB,stroke-width:1px,color:#F0F0F0;
-    classDef memory fill:#4D3C2B,stroke:#E67E22,stroke-width:1px,color:#F0F0F0;
-
     %% Puertos Externos
-    CLK["clk_sys (27 MHz)"] ::: clk
-    RST["rst_n (Reset KEY1)"] ::: clk
-    RXD["uart_rxd (Pin 18)"] ::: uart
-    TXD["uart_txd (Pin 17)"] ::: uart
-    LEDS["o_leds_n (LEDs 0-5)"] ::: clk
+    CLK["clk_sys (27 MHz)"]
+    RST["rst_n (Reset KEY1)"]
+    RXD["uart_rxd (Pin 18)"]
+    TXD["uart_txd (Pin 17)"]
+    LEDS["o_leds_n (LEDs 0-5)"]
 
     %% Submodulos
-    CLKGEN["clk_gen (Clock Generator)"] ::: clk
-    UARTCTRL["uart_ctrl (UART Transceiver)"] ::: uart
-    GFSM["FSM de Control Global"] ::: fsm
-    RXFRAME["Logica de Encuadre RX (Ventana Deslizante)"] ::: fsm
-    DSPENGINE["crossover_engine (Filtros IIR LR4)"] ::: dsp
-    OUTFIFO["FIFO de Salida (48-bit, 256 muestras)"] ::: memory
+    CLKGEN["clk_gen (Clock Generator)"]
+    UARTCTRL["uart_ctrl (UART Transceiver)"]
+    GFSM["FSM de Control Global"]
+    RXFRAME["Logica de Encuadre RX (Ventana Deslizante)"]
+    DSPENGINE["crossover_engine (Filtros IIR LR4)"]
+    OUTFIFO["FIFO de Salida (48-bit, 256 muestras)"]
 
     %% Conexiones de Reloj y Reset
     CLK --> CLKGEN
@@ -70,6 +63,19 @@ graph TD
     UARTCTRL -- "oc_tx_busy" --> OUTFIFO
     OUTFIFO -- "uart_tx_trigger_s" --> UARTCTRL
     UARTCTRL --> TXD
+
+    %% Estilos de Nodos
+    classDef clk fill:#1F2A38,stroke:#4E88FF,stroke-width:1px,color:#F0F0F0;
+    classDef fsm fill:#4A2E3D,stroke:#FF6E6E,stroke-width:1px,color:#F0F0F0;
+    classDef dsp fill:#1A332B,stroke:#00FF66,stroke-width:1px,color:#F0F0F0;
+    classDef uart fill:#2C3E50,stroke:#3498DB,stroke-width:1px,color:#F0F0F0;
+    classDef memory fill:#4D3C2B,stroke:#E67E22,stroke-width:1px,color:#F0F0F0;
+
+    class CLK,RST,LEDS,CLKGEN clk;
+    class GFSM,RXFRAME fsm;
+    class DSPENGINE dsp;
+    class RXD,TXD,UARTCTRL uart;
+    class OUTFIFO memory;
 ```
 
 ---
