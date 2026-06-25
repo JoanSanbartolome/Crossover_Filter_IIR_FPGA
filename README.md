@@ -157,6 +157,8 @@ Lanza la aplicacion grafica para controlar la placa, capturar datos y visualizar
 python scripts/crossover_gui.py
 ```
 
+![Interfaz Grafica de Control](assets/GUI.png)
+
 ### 2. Ejecucion del Flujo de Simulacion y Validacion RTL
 Si deseas simular el diseno de hardware en ModelSim y validar la exactitud matematica del diseno RTL frente al modelo ideal:
 1.  **Generar Estimulos:**
